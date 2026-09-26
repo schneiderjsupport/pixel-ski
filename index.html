@@ -220,7 +220,7 @@
 
 <footer>
   <div class="wrap">
-    © 2026 Julian Schneider · <a href="privacy.html">Privacy &amp; imprint</a> · <a href="mailto:schneiderj.support@gmail.com">schneiderj.support@gmail.com</a>
+    © 2026 Julian Schneider · <a href="privacy.html">Privacy &amp; imprint</a> · <a href="#consent" id="consent" data-consent>Privacy and cookie settings</a> · <a href="mailto:schneiderj.support@gmail.com">schneiderj.support@gmail.com</a>
   </div>
 </footer>
 
@@ -234,6 +234,18 @@
     <p class="px sub"><span class="side">DOWNHILL RACES SIDEWAYS</span><span class="up">MENUS &amp; SLALOM PLAY UPRIGHT</span></p>
   </div>
 </div>
+<script>
+  // reopen Google's consent dialog (AdSense Privacy & messaging) — the link
+  // users need to change or withdraw their consent
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-consent]');
+    if (!a) return;
+    e.preventDefault();
+    window.googlefc = window.googlefc || {};
+    googlefc.callbackQueue = googlefc.callbackQueue || [];
+    googlefc.callbackQueue.push(function () { if (googlefc.showRevocationMessage) googlefc.showRevocationMessage(); });
+  });
+</script>
 <script src="/_expo/static/js/web/index-3cc074dacea9e1a23fb8b869e216b77e.js" defer></script>
 </body>
 </html>
